@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Andrea Tagliasacchi</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="/style.css">
+  <script type="text/javascript" src="/showdown.min.js"></script>
+  <script type="text/javascript" src="/jquery.js"></script>
+  <script type="text/javascript">
+    function callback(file) {
+      var converter = new showdown.Converter();
+      var container = document.getElementById('container')
+      var div = document.createElement('div');
+      div.style = "text-align:justify"
+      div.class = "newline_bg"
+      var html = converter.makeHtml(file);
+      div.innerHTML = html
+      container.appendChild(div);
+      // document.write(html);
+      // alert(html) //< causes popup showing generated html
+    }
+    function load(markdown_path) {
+      jQuery.get(markdown_path, callback);
+    }
+    // $(document).ready(load_index)
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <script>
+      // TODO: non-determininistic execution order?
+      load("/index.md")
+      // load("/hiring.md")
+    </script>
+  </div>
+</body>
+
+</html>
