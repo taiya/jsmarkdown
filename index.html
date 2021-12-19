@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>PageDown Demo Page</title>
+<link rel="stylesheet" type="text/css" href="/index.css" />
+<script type="text/javascript" src="/Markdown.Converter.js"></script>
+<script type="text/javascript" src="/jquery.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">
+  // function plainLinkText(url){
+  //   return "WHATEVER";
+  // }
+  function callback(file) {
+    var converter = new Markdown.Converter();
+    // converter.hooks.chain("plainLinkText", plainLinkText)
+    var html = converter.makeHtml(file)
+    document.write(html);
+    // alert(html) //< causes popup showing generated html
+  }
+  jQuery.get("/index.md", callback);
+</script>
+</body>
+
+</html>
